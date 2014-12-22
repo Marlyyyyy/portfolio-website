@@ -1,0 +1,94 @@
+{% extends 'MartonPortfolioBundle:Default:index.html.twig' %}
+
+{% block body_id %}class="theme_light"{% endblock %}
+
+{% block active_tab_contact %} active{% endblock %}
+
+{% block dash_line %}
+    <div class="dash_line"></div>
+{% endblock %}
+
+{% block sub_dashboard %}{% endblock %}
+
+{% block content %}
+
+    <div class="content right">
+
+        <div class="contact shadow">
+
+            <div class="contact_tile left">
+
+                <div class="contact_header">
+                    <h1>Details: </h1>
+                </div>
+                <p>Thank you for visiting my portfolio page.</p>
+                <p>Please feel free to contact me with questions or feedback.</p>
+
+                <div class="contact_info">
+                    <div>
+                        <p class="title">E-mail: </p>
+                        <p class="value"><script>var lhs = "martonszeles93";var rhs = "gmail.com";document.write(lhs+"@"+rhs);</script></p>
+                    </div>
+
+                    <div>
+                        <p class="title">Flickr: </p>
+                        <a class="value" href="https://www.flickr.com/photos/marleton" target="_blank">www.flickr.com/marleton</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="contact_tile">
+
+                {% if form is defined %}
+
+                    <div class="contact_header">
+                        <h1>Send a message: </h1>
+                    </div>
+
+
+                    <div class="contact_form">
+
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.subject) }}
+                        {{ form_row(form.message) }}
+                        {{ form_end(form) }}
+
+                    </div>
+
+                {% endif %}
+
+                {% if success is defined %}
+
+                    <div class="contact_success">
+                        <h4>Message successfully sent!</h4>
+                        <p>I will aim to reply in the next 24 hours.</p>
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        var background_arr = ["{{ asset('bundles/martonportfolio/images/background/IMG_8695.jpg') }}"];
+
+        ImageRotatorModule.init(background_arr);
+        preloadImages(background_arr).done(function(images){
+            ImageRotatorModule.create()
+                              .start()
+                              .pause();
+        });
+    </script>
+{% endblock %}
+
+{% block background %}
+
+{% endblock %}

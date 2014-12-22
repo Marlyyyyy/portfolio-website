@@ -1,0 +1,28 @@
+{% extends 'MartonPortfolioBundle:Default:index.html.twig' %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block background %}
+
+    <script>
+        // To be called on each page separately
+        var background_arr = [
+            "{{ asset('bundles/martonportfolio/images/background/IMG_0680.jpg') }}",
+            "{{ asset('bundles/martonportfolio/images/photography/tvr_t350_c/IMG_1136.jpg') }}",
+            "{{ asset('bundles/martonportfolio/images/photography/unimog/IMG_8695.jpg') }}",
+            "{{ asset('bundles/martonportfolio/images/photography/macro/IMG_1574.jpg') }}",
+            "{{ asset('bundles/martonportfolio/images/photography/huracan_launch/IMG_1356.jpg') }}"];
+
+        ImageRotatorModule.init(background_arr, {controlPanel:true});
+
+        preloadImages(background_arr).done(function(images){
+            ImageRotatorModule.create()
+                              .start();
+        });
+
+    </script>
+
+
+{% endblock %}

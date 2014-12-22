@@ -1,0 +1,29 @@
+marton_portfolio_default:
+    pattern:  /
+    defaults: { _controller: MartonPortfolioBundle:Page:index }
+
+marton_portfolio_biography:
+    pattern:  /about
+    defaults: { _controller: MartonPortfolioBundle:Page:about }
+
+marton_portfolio_photography:
+    pattern:  /photography/{album}
+    defaults: { _controller: MartonPortfolioBundle:Page:photography, album: "index" }
+
+marton_portfolio_drawing:
+    pattern:  /drawing
+    defaults: { _controller: MartonPortfolioBundle:Page:drawing }
+
+marton_portfolio_contact:
+    pattern:  /contact
+    defaults: { _controller: MartonPortfolioBundle:Page:contact }
+
+remove_trailing_slash:
+    path: /{url}
+    defaults: { _controller: MartonPortfolioBundle:Redirect:removeTrailingSlash }
+    requirements:
+        url: .*/$
+    methods: [GET]
+
+
+

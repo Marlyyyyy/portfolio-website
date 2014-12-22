@@ -1,0 +1,58 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Marleton{% endblock %}
+
+{% block body_id %}class="theme_bright"{% endblock %}
+
+{% block body %}
+
+    <div class="main_container">
+
+        <div class="logo">
+            <a href="{{ path('marton_portfolio_default') }}">- Márton Széles -</a>
+        </div>
+
+        <!-- Menu -->
+        <div class="menu">
+            <div class='dashboard'>
+
+                <ul>
+                    <li>
+                        <a class="dashboard_tabs{% block active_tab_bio %}{% endblock %}" id='page_biography' href="{{ path('marton_portfolio_biography') }}" {% block admin_search_style %}{% endblock %}>
+                            about
+                        </a>
+                    </li><li>
+                        <a class="dashboard_tabs{% block active_tab_photo %}{% endblock %}" id='page_photography' href="{{ path('marton_portfolio_photography') }}" {% block admin_statistics_style %}{% endblock %}>
+                            photography
+                        </a>
+                    </li><li>
+                        <a class="dashboard_tabs{% block active_tab_drawing %}{% endblock %}" id='page_drawing' href="{{ path('marton_portfolio_drawing') }}" >
+                            drawing
+                        </a>
+                    </li><li>
+                        <a class="dashboard_tabs{% block active_tab_contact %}{% endblock %}" id='page_contact' href="{{ path('marton_portfolio_contact') }}" >
+                            contact
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            {% block dash_line %}{% endblock %}
+            {% block sub_dashboard %}{% endblock %}
+        </div>
+
+
+        <!-- Page Content -->
+        {% block content %}{% endblock %}
+        <div class="copyright">
+            <p>Copyright 2014 - Márton Széles</p>
+        </div>
+
+    </div>
+
+    <!-- Background Slideshow -->
+    {% block background %}{% endblock %}
+
+
+
+{% endblock %}

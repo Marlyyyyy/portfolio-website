@@ -1,0 +1,70 @@
+{% extends 'MartonPortfolioBundle:Default:index.html.twig' %}
+
+{% block body_id %}class="theme_dark"{% endblock %}
+
+{% block active_tab_photo %} active{% endblock %}
+
+{% block sub_dashboard %}
+<div class="sub_dashboard">
+    <div class="sub_dashboard_options">
+        <a class="sub_dashboard_back" href="{{ path('marton_portfolio_photography') }}">Albums</a>
+
+        <p class="sub_dashboard_title">{{ album_details.name }}</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="content shadow">
+        <div class="photo_div">
+
+            <div class="quote_frame">
+                    <p class="quote">{{ album_details.text }}</p>
+            </div>
+
+            {% set counter = 0 %}
+            {% for photo in photos_tn %}
+
+                <div class="photo_frame">
+                        <div class="photo_image image_rotator" id="{{ counter }}" name="jump" style="background-image:url({{ asset('bundles/martonportfolio/images/photography') }}/{{ album }}/thumbnails/{{ photo }})">
+                        </div>
+                </div>
+
+                {% set counter = counter + 1 %}
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block background %}
+
+    <script>
+        var background_arr = [];
+        var prefix = "{{ asset('bundles/martonportfolio/images/photography') }}";
+
+        {% for photo in photos %}
+
+        background_arr.push(prefix + "/{{ album }}/{{ photo}}");
+
+        {% endfor %}
+
+        preloadImages(background_arr);
+
+        ImageRotatorModule.init(background_arr, {controlPanel:true, hasExit:true});
+
+        $(document).keyup(function(e) {
+
+            if (e.keyCode == 27) {
+                ImageRotatorModule.blur();
+            }
+        });
+
+
+    </script>
+
+
+{% endblock %}

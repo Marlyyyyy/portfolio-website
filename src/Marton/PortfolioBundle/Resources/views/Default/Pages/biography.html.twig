@@ -1,0 +1,108 @@
+{% extends 'MartonPortfolioBundle:Default:index.html.twig' %}
+
+{% block body_id %}{% endblock %}
+
+{% block active_tab_bio %} active{% endblock %}
+
+{% block dash_line %}
+    <div class="dash_line"></div>
+{% endblock %}
+
+{% block sub_dashboard %}{% endblock %}
+
+{% block content %}
+
+    <div class="content shadow">
+        <div class="bio">
+
+            <div class="bio_projects">
+
+                <h1>My projects</h1>
+
+                <div id="project_container">
+
+                    {% for project in projects %}
+                        <div class="project_entry project_entry_closed" id="project_entry_{{ project.id }}">
+                            <div class="project_header" style="background: url({{ asset('bundles/martonportfolio/images/projects/' ~ project.picture) }}) no-repeat;" data-state="closed">
+                                <h2 class="p_title">{{ project.title }}</h2>
+                                <p class="p_subheader">{{ project.subheader }}</p>
+                            </div>
+                            <p class="p_text">{{ project.text | raw }}</p>
+                        </div>
+
+                        <hr>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            <div class="bio_about">
+
+                <h1 class="about_title">About me</h1>
+
+                <div class="about_short">
+
+                    {% for key,value in personal_details %}
+
+                        <div class="about_row">
+                            <div class="row_title">
+                                {{ key }}
+                            </div>
+                            <div class="row_value">
+                                {{ value }}
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+                <div class="bio_about_pic"></div>
+
+                <div class="about_long">
+                    <p>I'm a 3rd year Software Engineering student with a strong passion towards programming, supercars and
+                        photography.</p>
+                    <br>
+                    <p>While currently in progress for a first class degree, I also work on my own projects to keep up with
+                       the latest technology and best practices in computing. </p>
+                    <br>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <hr>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block background %}
+
+
+
+    <script>
+
+        ProjectBrowserModule.init();
+
+        var background_arr = [
+            "{{ asset('bundles/martonportfolio/images/background/IMG_2763.jpg') }}"
+        ];
+
+        ImageRotatorModule.init(background_arr);
+
+        preloadImages(background_arr).done(function(images){
+            ImageRotatorModule.create()
+                              .shade()
+                              .start()
+                              .pause();
+        });
+
+    </script>
+
+
+{% endblock %}

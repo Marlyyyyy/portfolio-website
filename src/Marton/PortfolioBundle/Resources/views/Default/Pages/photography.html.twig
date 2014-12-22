@@ -1,0 +1,40 @@
+{% extends 'MartonPortfolioBundle:Default:index.html.twig' %}
+
+{% block body_id %}class="theme_dark"{% endblock %}
+
+{% block active_tab_photo %} active{% endblock %}
+
+{% block dash_line %}
+    <div class="dash_line"></div>
+{% endblock %}
+
+{% block sub_dashboard %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="content shadow">
+        <div class="photo_div">
+
+            {% for album in albums %}
+
+                <div class="album_frame">
+                    <a href="photography/{{ album.dirPath }}">
+                        <img class="album_image" src="{{ asset('bundles/martonportfolio/images/photography') }}/{{ album.dirPath }}/thumbnails/{{ album.picPath }}"/>
+                    </a>
+                    <div class="album_title_background"></div>
+                    <a class="album_title_text" href="photography/{{ album.dirPath }}">{{ album.name }}</a>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block background %}
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'MartonPortfolioBundle:Default:index.html.twig' %}
+
+{% block body_id %}class="theme_dark"{% endblock %}
+
+{% block active_tab_drawing %} active{% endblock %}
+
+{% block dash_line %}
+    <div class="dash_line"></div>
+{% endblock %}
+
+{% block sub_dashboard %}{% endblock %}
+
+{% block content %}
+
+    <div class="content shadow">
+        <div class="drawing_div">
+
+            {% set counter = 0 %}
+            {% for drawing in drawings %}
+
+                <div class="drawing_frame image_rotator" id="{{ counter }}" name="jump">
+                    <div class="drawing_title">
+                        <h3>{{ drawing.name }}</h3>
+                        <p>{{ drawing.year }}</p>
+                    </div>
+                    <img src="{{ asset('bundles/martonportfolio/images/drawings/thumbnails') }}/{{ drawing.thumbnail }}"/>
+
+                </div>
+
+                {% set counter = counter + 1 %}
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block background %}
+
+    <script>
+        var background_arr = [];
+
+        var prefix = "{{ asset('bundles/martonportfolio/images/drawings') }}";
+        {% for drawing in drawings %}
+
+        background_arr.push(prefix + "/{{ drawing.image }}");
+
+        {% endfor %}
+
+        preloadImages(background_arr);
+
+        ImageRotatorModule.init(background_arr, {controlPanel:true, hasExit:true});
+
+        $(document).keyup(function(e) {
+
+            if (e.keyCode == 27) {
+                ImageRotatorModule.blur();
+            }
+        });
+
+
+    </script>
+
+{% endblock %}
