@@ -351,6 +351,9 @@ var ProjectBrowserModule = (function(){
     function registerEventListeners(){
 
         $(".project_header").click(interact);
+        $(".a-project-info").click(function(e){
+            e.stopPropagation();
+        })
     }
 
     function interact(){

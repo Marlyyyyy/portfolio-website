@@ -26,14 +26,22 @@
                             <div class="project_header" style="background: url({{ asset('bundles/martonportfolio/images/projects/' ~ project.picture) }}) no-repeat;" data-state="closed">
                                 <h2 class="p_title">{{ project.title }}</h2>
                                 <p class="p_subheader">{{ project.subheader }}</p>
+                                <div class="project-info">
+                                    {% if project.bitBucketLink is not null %}
+                                        <a class="a-project-info" href="{{ project.bitBucketLink }}"  target="_blank">
+                                            <img src="{{ asset('bundles/martonportfolio/images/src/bitbucket.png') }}" width="20" height="20"/>
+                                            <p>BitBucket</p>
+                                        </a>
+                                    {% endif %}
+                                    {% if project.screenshotsLink is not null %}
+                                        <a class="a-project-info" href="{{ project.screenshotsLink }}"  target="_blank">
+                                            <img src="{{ asset('bundles/martonportfolio/images/src/screenshots.png') }}" width="20" height="20"/>
+                                            <p>Screenshots</p>
+                                        </a>
+                                    {% endif %}
+                                </div>
                             </div>
                             <p class="p_text">{{ project.text | raw }}</p>
-                            {% if project.bitBucketLink is not null %}
-                                <a class="a-bitbucket" href="{{ project.bitBucketLink }}"  target="_blank">BitBucket</a>
-                            {% endif %}
-                            {% if project.screenshotsLink is not null %}
-                                <a class="a-bitbucket" href="{{ project.screenshotsLink }}"  target="_blank">Screenshots</a>
-                            {% endif %}
                         </div>
 
                         <hr>
