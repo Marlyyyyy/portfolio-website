@@ -80,11 +80,11 @@
     <script>
         var background_arr = ["{{ asset('bundles/martonportfolio/images/background/IMG_8695.jpg') }}"];
 
-        ImageRotatorModule.init(background_arr);
+        BackgroundGalleryModule.init(background_arr);
         preloadImages(background_arr).done(function(images){
-            ImageRotatorModule.create()
-                              .start()
-                              .pause();
+            BackgroundGalleryModule.create()
+                                   .start()
+                                   .pause();
         });
     </script>
 {% endblock %}

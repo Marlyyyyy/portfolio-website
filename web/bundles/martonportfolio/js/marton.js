@@ -70,7 +70,7 @@ function preloadImages(array, el){
 }
 
 // Module responsible for smoothly displaying any number of background images
-var ImageRotatorModule = (function(){
+var BackgroundGalleryModule = (function(){
 
     var settings, imageArr, imageArrLength, background1, background2, backgroundContainer, mainContainer, intervalID, cPanel;
     var position = 0;
@@ -83,10 +83,10 @@ var ImageRotatorModule = (function(){
         mainContainer   = $(".main_container");
 
         settings = $.extend({
-            "fade_speed"        : 500,
-            "slide_duration"    : 5000,
-            "controlPanel"      : false,
-            "hasExit"           : false
+            "fadeSpeed"        : 500,
+            "slideDuration"    : 5000,
+            "controlPanel"     : false,
+            "hasExit"          : false
         }, options || {});
 
         registerEventListeners();
@@ -94,18 +94,19 @@ var ImageRotatorModule = (function(){
         return this;
     }
 
-    function createBackground(){
+    // Draws the UI in the background with the foreground also visible.
+    function setupUI(){
 
         backgroundContainer    = document.createElement('div');
-        backgroundContainer.className  = "background_container";
+        backgroundContainer.className  = "background-container";
 
         background1            = document.createElement('div');
-        background1.className  = "background_pic";
-        background1.id         = "background_pic_01";
+        background1.className  = "background-pic";
+        background1.id         = "background-pic-01";
 
         background2            = document.createElement('div');
-        background2.className  = "background_pic";
-        background2.id         = "background_pic_02";
+        background2.className  = "background-pic";
+        background2.id         = "background-pic-02";
 
         backgroundContainer.appendChild(background1);
         backgroundContainer.appendChild(background2);
@@ -119,10 +120,14 @@ var ImageRotatorModule = (function(){
         return this;
     }
 
-    function removeBackground(){
+    function removeUI(){
 
-        document.body.removeChild(backgroundContainer);
-        removeCPanel();
+        if (typeof backgroundContainer !== "undefined"){
+            if (document.body === backgroundContainer.parentNode){
+                document.body.removeChild(backgroundContainer);
+                removeCPanel();
+            }
+        }
 
         return this;
     }
@@ -131,33 +136,33 @@ var ImageRotatorModule = (function(){
     function createCPanel(){
 
         cPanel = document.createElement('div');
-        cPanel.className = "c_container";
+        cPanel.className = "c-container";
 
-        var  c_left       = document.createElement('div');
-        c_left.className  = "c_move c_left";
+        var cLeft       = document.createElement('div');
+        cLeft.className = "c-move c-left";
 
-        var  c_right      = document.createElement('div');
-        c_right.className = "c_move c_right";
+        var cRight       = document.createElement('div');
+        cRight.className = "c-move c-right";
 
-        cPanel.appendChild(c_left);
-        cPanel.appendChild(c_right);
+        cPanel.appendChild(cLeft);
+        cPanel.appendChild(cRight);
 
-        var  previous      = document.createElement('div');
-        previous.className = "c_arrow image_rotator";
+        var previous       = document.createElement('div');
+        previous.className = "c-arrow image-rotator";
         previous.setAttribute("name","previous");
 
-        var  next      = document.createElement('div');
-        next.className = "c_arrow image_rotator";
+        var next       = document.createElement('div');
+        next.className = "c-arrow image-rotator";
         next.setAttribute("name","next");
 
-        c_left.appendChild(previous);
-        c_right.appendChild(next);
+        cLeft.appendChild(previous);
+        cRight.appendChild(next);
 
         if (settings.hasExit){
-            var c_exit = document.createElement('div');
-            c_exit.className = "c_exit image_rotator";
-            c_exit.setAttribute("name","exit");
-            cPanel.appendChild(c_exit);
+            var cExit = document.createElement('div');
+            cExit.className = "c-exit image-rotator";
+            cExit.setAttribute("name","exit");
+            cPanel.appendChild(cExit);
         }
 
         document.body.appendChild(cPanel);
@@ -180,7 +185,7 @@ var ImageRotatorModule = (function(){
 
     function registerEventListeners(){
 
-        $(document).on("click", ".image_rotator", function(){
+        $(document).on("click", ".image-rotator", function(){
 
             var task = $(this).attr("name");
 
@@ -206,17 +211,27 @@ var ImageRotatorModule = (function(){
                     break;
             }
         });
+
+        // Pressing ESC
+        if (settings.hasExit){
+            $(document).keyup(function(e) {
+
+                if (e.keyCode == 27) {
+                    blur();
+                }
+            });
+        }
     }
 
-    // Change between backgrounds
+    // Smooth change between backgrounds
     function move(){
 
         if (clock){
             // Show top layer
-            changeBackground(background1, "url("+imageArr[position]+")", function(){$(background1).finish().fadeIn(settings.fade_speed)});
+            changeBackground(background1, "url("+imageArr[position]+")", function(){$(background1).finish().fadeIn(settings.fadeSpeed)});
         }else{
             // Show bottom layer
-            changeBackground(background2, "url("+imageArr[position]+")", function(){$(background1).finish().fadeOut(settings.fade_speed)});
+            changeBackground(background2, "url("+imageArr[position]+")", function(){$(background1).finish().fadeOut(settings.fadeSpeed)});
         }
 
         function changeBackground(obj, background, callback){
@@ -227,17 +242,19 @@ var ImageRotatorModule = (function(){
         clock = !clock;
     }
 
+    // Starts the slideshow with an automatic playback
     function start(){
 
         move();
         intervalID =   window.setInterval(function(){
             position = (position + 1) % imageArrLength;
             move();
-        }, settings.slide_duration);
+        }, settings.slideDuration);
 
         return this;
     }
 
+    // Pauses the playback
     function pause(){
 
         clearInterval(intervalID);
@@ -266,6 +283,7 @@ var ImageRotatorModule = (function(){
         return this;
     }
 
+    // Pauses the playback and jumps to a specified position in the slideshow
     function jumpTo(pos){
 
         pause();
@@ -275,17 +293,19 @@ var ImageRotatorModule = (function(){
         return this;
     }
 
+    // Draws and displays the UI and hides the foreground
     function focus(){
 
-        createBackground();
+        setupUI();
         $(mainContainer).fadeOut(100);
 
         return this;
     }
 
+    // Removes the UI and shows the foreground
     function blur(){
 
-        removeBackground();
+        removeUI();
         $(mainContainer).fadeIn(100);
 
         return this;
@@ -300,7 +320,7 @@ var ImageRotatorModule = (function(){
 
     return {
         init:init,
-        create:createBackground,
+        create:setupUI,
         shade:lowerOpacity,
         focus:focus,
         blur:blur,

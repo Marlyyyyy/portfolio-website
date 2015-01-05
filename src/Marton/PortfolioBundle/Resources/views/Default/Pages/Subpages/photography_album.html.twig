@@ -27,7 +27,7 @@
             {% for photo in photos_tn %}
 
                 <div class="photo_frame">
-                        <div class="photo_image image_rotator" id="{{ counter }}" name="jump" style="background-image:url({{ asset('bundles/martonportfolio/images/photography') }}/{{ album }}/thumbnails/{{ photo }})">
+                        <div class="photo_image image-rotator" id="{{ counter }}" name="jump" style="background-image:url({{ asset('bundles/martonportfolio/images/photography') }}/{{ album }}/thumbnails/{{ photo }})">
                         </div>
                 </div>
 
@@ -44,26 +44,16 @@
 
     <script>
         var background_arr = [];
+
         var prefix = "{{ asset('bundles/martonportfolio/images/photography') }}";
 
         {% for photo in photos %}
-
-        background_arr.push(prefix + "/{{ album }}/{{ photo}}");
-
+            background_arr.push(prefix + "/{{ album }}/{{ photo}}");
         {% endfor %}
 
         preloadImages(background_arr);
 
-        ImageRotatorModule.init(background_arr, {controlPanel:true, hasExit:true});
-
-        $(document).keyup(function(e) {
-
-            if (e.keyCode == 27) {
-                ImageRotatorModule.blur();
-            }
-        });
-
-
+        BackgroundGalleryModule.init(background_arr, {controlPanel:true, hasExit:true});
     </script>
 
 

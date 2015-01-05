@@ -15,11 +15,11 @@
             "{{ asset('bundles/martonportfolio/images/photography/macro/IMG_1574.jpg') }}",
             "{{ asset('bundles/martonportfolio/images/photography/huracan_launch/IMG_1356.jpg') }}"];
 
-        ImageRotatorModule.init(background_arr, {controlPanel:true});
+        BackgroundGalleryModule.init(background_arr, {controlPanel:true});
 
         preloadImages(background_arr).done(function(images){
-            ImageRotatorModule.create()
-                              .start();
+            BackgroundGalleryModule.create()
+                                   .start();
         });
 
     </script>

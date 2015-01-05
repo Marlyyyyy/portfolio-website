@@ -18,7 +18,7 @@
             {% set counter = 0 %}
             {% for drawing in drawings %}
 
-                <div class="drawing_frame image_rotator" id="{{ counter }}" name="jump">
+                <div class="drawing_frame image-rotator" id="{{ counter }}" name="jump">
                     <div class="drawing_title">
                         <h3>{{ drawing.name }}</h3>
                         <p>{{ drawing.year }}</p>
@@ -43,24 +43,14 @@
         var background_arr = [];
 
         var prefix = "{{ asset('bundles/martonportfolio/images/drawings') }}";
+
         {% for drawing in drawings %}
-
-        background_arr.push(prefix + "/{{ drawing.image }}");
-
+            background_arr.push(prefix + "/{{ drawing.image }}");
         {% endfor %}
 
         preloadImages(background_arr);
 
-        ImageRotatorModule.init(background_arr, {controlPanel:true, hasExit:true});
-
-        $(document).keyup(function(e) {
-
-            if (e.keyCode == 27) {
-                ImageRotatorModule.blur();
-            }
-        });
-
-
+        BackgroundGalleryModule.init(background_arr, {controlPanel:true, hasExit:true});
     </script>
 
 {% endblock %}

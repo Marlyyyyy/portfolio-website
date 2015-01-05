@@ -28,6 +28,12 @@
                                 <p class="p_subheader">{{ project.subheader }}</p>
                             </div>
                             <p class="p_text">{{ project.text | raw }}</p>
+                            {% if project.bitBucketLink is not null %}
+                                <a class="a-bitbucket" href="{{ project.bitBucketLink }}"  target="_blank">BitBucket</a>
+                            {% endif %}
+                            {% if project.screenshotsLink is not null %}
+                                <a class="a-bitbucket" href="{{ project.screenshotsLink }}"  target="_blank">Screenshots</a>
+                            {% endif %}
                         </div>
 
                         <hr>
@@ -93,13 +99,13 @@
             "{{ asset('bundles/martonportfolio/images/background/IMG_2763.jpg') }}"
         ];
 
-        ImageRotatorModule.init(background_arr);
+        BackgroundGalleryModule.init(background_arr);
 
         preloadImages(background_arr).done(function(images){
-            ImageRotatorModule.create()
-                              .shade()
-                              .start()
-                              .pause();
+            BackgroundGalleryModule.create()
+                                   .shade()
+                                   .start()
+                                   .pause();
         });
 
     </script>
