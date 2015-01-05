@@ -8,7 +8,6 @@
 
 namespace Marton\PortfolioBundle\Repository;
 
-
 use Doctrine\ORM\EntityRepository;
 
 class DrawingRepository extends EntityRepository {
@@ -27,5 +26,4 @@ class DrawingRepository extends EntityRepository {
 
         return $result;
     }
-
 } 

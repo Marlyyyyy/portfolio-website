@@ -13,17 +13,16 @@ class PageController extends Controller {
     public function indexAction(){
 
         return $this->render('MartonPortfolioBundle:Default:Pages/home.html.twig');
-
     }
 
     public function aboutAction(){
 
         $personal_details = array(
-            'Name: ' => 'Márton Széles',
-            'Location: ' => 'Edinburgh, United Kingdom',
-            'Studies: ' => 'University of Edinburgh',
-            'Occupation: ' => 'Software Engineer',
-            '' => 'Amateur Photographer'
+            'Name: '        => 'Márton Széles',
+            'Location: '    => 'Edinburgh, United Kingdom',
+            'Studies: '     => 'University of Edinburgh',
+            'Occupation: '  => 'Software Engineer',
+            ''              => 'Amateur Photographer'
         );
 
         $repository = $this->getDoctrine()->getRepository('MartonPortfolioBundle:Project');
@@ -38,7 +37,7 @@ class PageController extends Controller {
     public function photographyAction($album){
 
         if ($album == "index"){
-            // Get all albums
+
             $repository = $this->getDoctrine()->getRepository('MartonPortfolioBundle:Photography');
             $albums = $repository-> findAllAlbums();
 
@@ -46,6 +45,7 @@ class PageController extends Controller {
                 'albums' => $albums
             ));
         }else{
+
             // Get photos inside album
             $scanner = new Scanner();
             $scanned_photos = $scanner->getPhotos($album);
@@ -61,25 +61,20 @@ class PageController extends Controller {
                 }
             }
 
-            $repository = $this->getDoctrine()
-                ->getRepository('MartonPortfolioBundle:Photography');
+            $repository = $this->getDoctrine()->getRepository('MartonPortfolioBundle:Photography');
             $album_details = $repository->findOneBy(array("dir_path" => $album));
 
             return $this->render('MartonPortfolioBundle:Default:Pages/Subpages/photography_album.html.twig', array(
-                'photos' => $photos,
-                'photos_tn' => $photos_tn,
-                'album'  => $album,
+                'photos'        => $photos,
+                'photos_tn'     => $photos_tn,
+                'album'         => $album,
                 'album_details' => $album_details
             ));
         }
-
-
-
     }
 
     public function drawingAction(){
 
-        // Get all drawings
         $repository = $this->getDoctrine()->getRepository('MartonPortfolioBundle:Drawing');
         $drawings = $repository-> findAllDrawings();
 
@@ -103,9 +98,10 @@ class PageController extends Controller {
             ->getForm();
 
         if($session->has('isSubmitted')){
-            $isSubmitted = $session->get('isSubmitted');
 
+            $isSubmitted = $session->get('isSubmitted');
             if($isSubmitted){
+
                 // Allow user to come back for another email
                 $session->set('isSubmitted', false);
 
@@ -119,12 +115,11 @@ class PageController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            // Check if the form has been submitted
 
             $session->set('isSubmitted', true);
 
-            $name = $form->get('name')->getData();
-            $email = $form->get('email')->getData();
+            $name    = $form->get('name')->getData();
+            $email   = $form->get('email')->getData();
             $subject = $form->get('subject')->getData();
             $message = $form->get('message')->getData();
 
@@ -145,5 +140,4 @@ class PageController extends Controller {
             'form' => $form->createView()
         ));
     }
-
 } 

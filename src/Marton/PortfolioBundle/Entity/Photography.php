@@ -54,124 +54,73 @@ class Photography{
      */
     protected $order;
 
-    /**
-     * @param mixed $order
-     */
     public function setOrder($order)
     {
         $this->order = $order;
     }
 
-    /**
-     * @return mixed
-     */
     public function getOrder()
     {
         return $this->order;
     }
 
-
-
-    /**
-     * @param mixed $year
-     */
     public function setYear($year)
     {
         $this->year = $year;
     }
 
-    /**
-     * @return mixed
-     */
     public function getYear()
     {
         return $this->year;
     }
 
-    /**
-     * @param mixed $text
-     */
     public function setText($text)
     {
         $this->text = $text;
     }
 
-    /**
-     * @return mixed
-     */
     public function getText()
     {
         return $this->text;
     }
 
-    /**
-     * @return mixed
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getDate()
     {
         return $this->date;
     }
 
-    /**
-     * @param mixed $dir_path
-     */
     public function setDirPath($dir_path)
     {
         $this->dir_path = $dir_path;
     }
 
-    /**
-     * @return mixed
-     */
     public function getDirPath()
     {
         return $this->dir_path;
     }
 
-    /**
-     * @param mixed $name
-     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
-    /**
-     * @return mixed
-     */
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $pic_path
-     */
     public function setPicPath($pic_path)
     {
         $this->pic_path = $pic_path;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPicPath()
     {
         return $this->pic_path;
     }
-
-
-
 }
-
-
-
-?>

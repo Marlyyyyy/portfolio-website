@@ -24,6 +24,3 @@ remove_trailing_slash:
     requirements:
         url: .*/$
     methods: [GET]
-
-
-

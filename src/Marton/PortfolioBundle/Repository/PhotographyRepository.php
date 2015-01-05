@@ -26,5 +26,4 @@ class PhotographyRepository extends EntityRepository{
 
         return $result;
     }
-
 }

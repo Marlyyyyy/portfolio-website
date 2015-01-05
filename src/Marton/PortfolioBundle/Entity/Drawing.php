@@ -45,78 +45,48 @@ class Drawing {
      */
     protected $image;
 
-    /**
-     * @param mixed $image
-     */
     public function setImage($image)
     {
         $this->image = $image;
     }
 
-    /**
-     * @return mixed
-     */
     public function getImage()
     {
         return $this->image;
     }
 
-    /**
-     * @param mixed $name
-     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
-    /**
-     * @return mixed
-     */
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $thumbnail
-     */
     public function setThumbnail($thumbnail)
     {
         $this->thumbnail = $thumbnail;
     }
 
-    /**
-     * @return mixed
-     */
     public function getThumbnail()
     {
         return $this->thumbnail;
     }
 
-    /**
-     * @param mixed $year
-     */
     public function setYear($year)
     {
         $this->year = $year;
     }
 
-    /**
-     * @return mixed
-     */
     public function getYear()
     {
         return $this->year;
     }
 
-    /**
-     * @return mixed
-     */
     public function getId()
     {
         return $this->id;
     }
-
-
-
 } 

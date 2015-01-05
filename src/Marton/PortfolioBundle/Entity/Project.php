@@ -14,9 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Marton\PortfolioBundle\Repository\ProjectRepository")
  * @ORM\Table(name="tbl_project")
  */
-
-
-
 class Project {
 
 
@@ -53,111 +50,87 @@ class Project {
     protected $text;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $order;
+    protected $bitBucketLink = null;
 
     /**
-     * @param mixed $order
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    public function setOrder($order)
-    {
-        $this->order = $order;
-    }
+    protected $screenshotsLink = null;
 
-    /**
-     * @return mixed
-     */
-    public function getOrder()
-    {
-        return $this->order;
-    }
-
-
-    /**
-     * @return mixed
-     */
     public function getDate()
     {
         return $this->date;
     }
 
-    /**
-     * @return mixed
-     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    public function setBitBucketLink($bitBucketLink)
+    {
+        $this->bitBucketLink = $bitBucketLink;
+    }
+
+    public function getBitBucketLink()
+    {
+        return $this->bitBucketLink;
+    }
+
+    public function setScreenshotsLink($screenshotsLink)
+    {
+        $this->screenshotsLink = $screenshotsLink;
+    }
+
+    public function getScreenshotsLink()
+    {
+        return $this->screenshotsLink;
+    }
+
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $picture
-     */
     public function setPicture($picture)
     {
         $this->picture = $picture;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPicture()
     {
         return $this->picture;
     }
 
-    /**
-     * @param mixed $subheader
-     */
     public function setSubheader($subheader)
     {
         $this->subheader = $subheader;
     }
 
-    /**
-     * @return mixed
-     */
     public function getSubheader()
     {
         return $this->subheader;
     }
 
-    /**
-     * @param mixed $text
-     */
     public function setText($text)
     {
         $this->text = $text;
     }
 
-    /**
-     * @return mixed
-     */
     public function getText()
     {
         return $this->text;
     }
 
-    /**
-     * @param mixed $title
-     */
     public function setTitle($title)
     {
         $this->title = $title;
     }
 
-    /**
-     * @return mixed
-     */
     public function getTitle()
     {
         return $this->title;
     }
-
-    /**
-     * @return mixed
-     */
-
-
-
 } 

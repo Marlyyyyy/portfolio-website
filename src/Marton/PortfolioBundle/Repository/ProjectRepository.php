@@ -19,12 +19,11 @@ class ProjectRepository extends EntityRepository{
 
         $qb ->select('p')
             ->from('MartonPortfolioBundle:Project', 'p')
-            ->orderBy('p.order', 'DESC');
+            ->orderBy('p.date', 'DESC');
 
         $query = $qb->getQuery();
         $result = $query->getResult();
 
         return $result;
     }
-
 }
